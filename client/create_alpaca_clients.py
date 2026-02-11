@@ -1,7 +1,10 @@
+# module imports
+from client.alpaca_config import AlpacaConfig
+
+#3rd party imports
 from alpaca.trading.client import TradingClient
 from alpaca.data.historical import StockHistoricalDataClient
 from alpaca.data.live import StockDataStream
-from client.alpaca_config import AlpacaConfig
 
 def create_alpaca_clients(cfg: AlpacaConfig):
     trading = TradingClient(
