@@ -15,12 +15,10 @@ from client.create_alpaca_clients import create_alpaca_clients
 from marketscrape.stock_history import StockHistoryBatch
 
 # --- SYSTEM CONFIG ---
-VERSION = "1.4.1"
+VERSION = "1.1.0"
 BASEPATH = Path(__file__).resolve().parent
-PLOT_PATH = BASEPATH / "Backtest_Results"
-PLOT_PATH.mkdir(exist_ok=True)
-RESULTSPATH = PLOT_PATH / VERSION.replace(".", "_")
-RESULTSPATH.mkdir(exist_ok=True)
+DATADIR = BASEPATH / "data"
+DATADIR.mkdir(exist_ok=True)
 
 
 
