@@ -11,10 +11,9 @@ class StockHistoryBatch:
         self._historical_client = historical_client
 
     def get_historical_bars(self, symbols: list, start: datetime, end: datetime, timeframe=TimeFrame.Day) -> pd.DataFrame:
-        """
-        Retrieve historical bars for multiple symbols in a single batch request.
-        Returns a MultiIndex DataFrame (symbol, timestamp).
-        """
+        """ Retrieve historical bars for multiple symbols in a single batch request.
+        Returns a MultiIndex DataFrame (symbol, timestamp)."""
+        
         request = StockBarsRequest(
             symbol_or_symbols=symbols,
             start=start,

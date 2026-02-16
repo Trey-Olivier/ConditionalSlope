@@ -14,8 +14,8 @@ class StockLive:
         self._running = False
 
     async def __run_stream(self):
-        
         """Internal coroutine to manage the subscription."""
+        
         self._running = True
         await self._stream.subscribe_bars(self.handle_bar, self._symbol)
         await self._stream.run()
