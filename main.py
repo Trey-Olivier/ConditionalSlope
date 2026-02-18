@@ -13,6 +13,8 @@ from client.alpaca_pod import AlpacaPod
 from client.alpaca_config import AlpacaConfig
 from client.create_alpaca_clients import create_alpaca_clients
 from marketscrape.stock_history import StockHistoryBatch
+from scanner.scanner import Scanner
+
 
 # --- SYSTEM CONFIG ---
 VERSION = "1.1.0"
@@ -23,12 +25,18 @@ DATADIR.mkdir(exist_ok=True)
 
 
 def main():
-    try:
-        cfg = AlpacaConfig.load_alpaca_config()
-        trading, historical, stream = create_alpaca_clients(cfg)
-        
-    except Exception as e:
-        print(f"FATAL: {e}")
+    cfg = AlpacaConfig.load_alpaca_config()
+    trading, historical, stream = create_alpaca_clients(cfg)
+    pod = AlpacaPod(trading=trading, historical=historical, stream=stream)
+
+    scanner = Scanner(pod)
+    ranked, confirmed = scanner.run_scanner()
+
+    print("Top 10 Ranked Stocks:")
+    print(ranked.head(10))
+
+
+    
 
 if __name__ == "__main__":
     main()

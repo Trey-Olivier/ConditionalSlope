@@ -8,14 +8,15 @@ class AlpacaConfig:
     secret_key: str
     paper: bool
 
-    def load_alpaca_config() -> AlpacaConfig:
+    @classmethod
+    def load_alpaca_config(cls) -> AlpacaConfig:
         api_key = os.getenv("APCA_API_KEY_ID")
         secret = os.getenv("APCA_API_SECRET_KEY")
 
         if not api_key or not secret:
             raise RuntimeError("Missing Alpaca credentials")
 
-        return AlpacaConfig(
+        return cls(
             api_key=api_key,
             secret_key=secret,
             paper=True

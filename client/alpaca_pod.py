@@ -18,6 +18,7 @@ class AlpacaPod:
 
     # --- rate limiting ---
     rest_calls_this_minute: int = 0
+    allowed_rest_calls_per_minute: int = 200
     last_rest_reset: datetime | None = None
     
 
